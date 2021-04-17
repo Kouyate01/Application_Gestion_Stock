@@ -23,13 +23,16 @@ Sorties
               <table id="datatables-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                       <thead>
                           <tr>
-                              <th>Types</th>
+                              <!--<th>Types</th>-->
                               <th>Date</th>
-                              <th>N°=Facture</th>
-                              <th>Quantite</th>
-                              <th>Prix Unitaire</th>
-                              <th>Fournisseur</th>
-                              <th>Solde</th>
+                              <!--<th>N°Facture</th>-->
+                              <th>Client</th>
+                              <th>Quantité</th>
+                              <th>Montant Total</th>
+                              <th>Montant Payé</th>
+                              <th>Montant Due</th>
+                              <th>Vendu par</th>
+                              <!--<th>Moyen paiement</th>-->
                               <th>Options</th>
                           </tr>
                       </thead>
@@ -39,13 +42,17 @@ Sorties
                         @foreach($sorties as $sortie)
                           <tr>
 
-                              <td>{{ $sortie->type->name }}</td>
+                              {{--<td>{{ $sortie->type->name }}</td>--}}
                               <td>{{ date('d/m/Y',strtotime($sortie->date)) }}</td>
-                              <td>{{ $sortie->nfacture }}</td>
+                              {{--<td>{{ $sortie->nfacture }}</td>--}}
+                              <td>{{ $sortie->client}}</td>
                               <td>{{ $sortie->quantite}}</td>
-                              <td>{{ $sortie->prix_uni}}</td>
-                              <td>{{ $sortie->fourni }}</td>
-                               <td>{!! $sortie->solde = $sortie->quantite * $sortie->prix_uni !!}</td>
+                              <td>{{ $sortie->montant_total }}</td>
+                              <td>{{ $sortie->montant_paye}}</td>
+                              <td>{{ $sortie->montant_due }}</td>
+                              <td>{{ $sortie->vendu_par }}</td>
+                              {{--<td>{{}}--}}
+                              {{--<td>{!! $sortie->solde = $sortie->quantite * $sortie->prix_uni !!}</td>--}}
                               <td>
                           <div class="btn-group btn-group-xs">
                            <a href="{{ route('get_edit_sorties',$sortie->id) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
@@ -53,7 +60,7 @@ Sorties
                             
                           </div>
                         </td>
-
+                        
                           </tr>
                         @endforeach
 

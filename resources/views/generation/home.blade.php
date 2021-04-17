@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Generation
+Génération
 @endsection
 
 @section('contents')
@@ -9,7 +9,7 @@ Generation
       <div class="col-md-12">
         <div class="widget">
           <div class="widget-header">
-            <h2 class="text-center"><strong>Generations</strong></h2>
+            <h2 class="text-center"><strong>Générations</strong></h2>
 
           </div>
           <div class="widget-content">
@@ -19,13 +19,14 @@ Generation
               <table id="datatables-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                       <thead>
                           <tr>
-                              <th>Types</th>
-                              <th>Date</th>
-                              <th>N°=Facture</th>
-                              <th>Quantite</th>
-                              <th>Prix Unitaire</th>
                               <th>Fournisseur</th>
+                              <th>Stock initial</th>
+                              <th>Stock actuel</th>
+                              <th>Prix d'achat</th>
+                              <th>Prix de vente</th>
+                              <th>Entrer par</th>
                               <th>Solde</th>
+                              <th>Date</th>
                               <th>Options</th>
                           </tr>
                       </thead>
@@ -48,14 +49,15 @@ Generation
                         </script>
                        @endif
                               <td>{{ $generations->type->name }}</td>
-                              <td>{{ date('d/m/Y',strtotime($generations->date)) }}</td>
-                              <td>{{ $generations->nfacture }}</td>
-                              <td>{{ $generations->quantite}}</td>
-                              <td>{{ $generations->prix_uni}}</td>
+                              <td>{{ date('d/m/Y',strtotime($generations->fourni)) }}</td>
+                              <td>{{ $generations->quantite }}</td>
+                              <td>{{ $generations->stock_actuel}}</td>
+                              <td>{{ $generations->prix_achat}}</td>
                               
-                              <td>{{ $generations->fourni }}</td>
+                              <td>{{ $generations->prix_uni }}</td>
+                              <td>{{ $generations->entree_par }}</td>
                               <td>{!! $generations->solde = $generations->quantite * $generations->prix_uni !!}</td>
-                              <td>
+                              <td>{{ $generations->date }}</td>
                           <div class="btn-group btn-group-xs">
                            <a href="{{ route('get_edit_generation',$generations->id) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('destroy.generation',$generations->id) }}" class="btn btn-default"><i class="fa fa-trash"></i></a>

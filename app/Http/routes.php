@@ -89,31 +89,31 @@ Route::get('entres/delete/{id}',[
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------Sorties--------------------------------------------------------------------------------------------------------
 Route::get('/sorties/add',[
-  'uses' => 'generationController@get_add_sorties',
+  'uses' => 'sortieController@get_add_sorties',
   'as' => 'get_add_sorties'
 ]);
 Route::post('sorties/add',[
-  'uses' => 'generationController@post_add_sorties',
+  'uses' => 'sortieController@post_add_sorties',
   'as' => 'add.sorties'
 ]);
 Route::get('sorties',[
-  'uses' => 'generationController@show_sorties',
+  'uses' => 'sortieController@show_sorties',
   'as' => 'show.sorties'
 ]);
 //Edit sorties
 Route::get('sorties/modifier/{id}',[
-  'uses' => 'generationController@get_edit_sorties',
+  'uses' => 'sortieController@get_edit_sorties',
   'as' => 'get_edit_sorties'
   ]);
 Route::post('sorties/modifier/{id}',[
-  'uses' => 'generationController@edit_sorties',
+  'uses' => 'sortieController@edit_sorties',
   'as' => 'edit.sorties'
 ]);
 
 //delete
 
 Route::get('sorties/delete/{id}',[
-  'uses' => 'generationController@destroy_sorties',
+  'uses' => 'sortieController@destroy_sorties',
   'as' => 'destroy.sorties'
   ]);
 //---------------------------------------------------------------------------------------------------------------------------------------------END Sorties--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -122,30 +122,30 @@ Route::get('sorties/delete/{id}',[
 //---------------------------------------------------------------------------------------------------------------------------------------------Types--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Route::get('types',[
-  'uses' => 'generationController@index_types',
+  'uses' => 'sortieController@index_types',
   'as' => 'home.types'
 ]);
 Route::post('types',[
-  'uses' => 'generationController@post_types',
+  'uses' => 'sortieController@post_types',
   'as' => 'post.types'
 ]);
 
 Route::get('type/{id}',[
-  'uses' => 'generationController@single_type',
+  'uses' => 'sortieController@single_type',
   'as' => 'single.type'
   ]);
 Route::get('types/modifier/{id}',[
-  'uses' => 'generationController@get_edit_page_types',
+  'uses' => 'sortieController@get_edit_page_types',
   'as' => 'get_edit_page_types'
   ]);
 Route::post('types/modifier/{id}',[
-  'uses' => 'generationController@edit_page_types',
+  'uses' => 'sortieController@edit_page_types',
   'as' => 'edit.page.types'
 ]);
 
 //delete
 
 Route::get('types/delete/{id}',[
-  'uses' => 'generationController@destroy_page_types',
+  'uses' => 'sortieController@destroy_page_types',
   'as' => 'destroy.page.types'
   ]);

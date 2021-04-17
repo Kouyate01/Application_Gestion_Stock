@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGenerationsTable extends Migration
+class CreateSortieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,16 @@ class CreateGenerationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('generations', function (Blueprint $table) {
+        Schema::create('sortie', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mode');
             //$table->integer('type_id');
             $table->string('date');
-            $table->string('nfacture');
-            $table->integer('quantite');
-            $table->integer('stock_actuel');
-            $table->integer('prix_achat');
-            $table->integer('prix_uni');
-            $table->integer('entree_par');
-            $table->string('fourni');
+            $table->string('client');
+            $table->integer('montant_total');
+            $table->integer('montant_paye');
+            $table->integer('montant_due');
+            $table->integer('vendu_par');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateGenerationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('generations');
+        Schema::drop('sortie');
     }
 }

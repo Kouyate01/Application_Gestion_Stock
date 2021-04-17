@@ -20,45 +20,69 @@
 									{{ Form::select('type_id',$types, null, ['class' => 'form-control']) }}
                   </div>
                   <div class="form-group @if($errors->has('date')) has-error @endif">
-                  <label for="date">Date</label>
-                  <input type="text" class="form-control datepicker-input" value="{{ $generation->date }}"  name="date" data-mask="9999-99-99">
-                    @if($errors->has('date')) <div class="help-block">
-                       {{ $errors->first('date') }}
+                  <label for="fournisseur">Fournisseur</label>
+                  <input type="text" class="form-control datepicker-input" value="{{ $generation->fournisseur }}"  name="fournisseur" data-mask="9999-99-99">
+                    @if($errors->has('fournisseur')) <div class="help-block">
+                       {{ $errors->first('fournisseur') }}
                     </div>
                   @endif
                 </div>
                     <div class="form-group @if($errors->has('nfacture')) has-error @endif">
-										<label for="nfacture">N°Facture</label>
-										<input type="text" class="form-control" value="{{ $generation->nfacture }}" name ="nfacture">
-                    @if($errors->has('nfacture')) <div class="help-block">
-                       {{ $errors->first('nfacture') }}
-                    </div>
-                  @endif
-                    </div>
-                    <div class="form-group @if($errors->has('quantite')) has-error @endif">
-                    <label for="quantite">Quantité</label>
-                    <input type="text" class="form-control" value="{{ $generation->quantite }}" name="quantite" data-mask="999999" placeholder="999999">
+										<label for="quantite">Stock initial</label>
+										<input type="text" class="form-control" value="{{ $generation->quantite }}" name ="quantite">
                     @if($errors->has('quantite')) <div class="help-block">
                        {{ $errors->first('quantite') }}
                     </div>
                   @endif
+                    </div>
+                    <div class="form-group @if($errors->has('quantite')) has-error @endif">
+                    <label for="stock_actuel">  Stock actuel</label>
+                    <input type="text" class="form-control" value="{{ $generation->stock_actuel }}" name="stock_actuel" data-mask="999999" placeholder="999999">
+                    @if($errors->has('stock_actuel')) <div class="help-block">
+                       {{ $errors->first('stock_actuel') }}
+                    </div>
+                  @endif
                   </div>
                   <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
-                  <label for="prix_uni">Prix Unitaire</label>
-                  <input type="text" class="form-control" value="{{ $generation->prix_uni }}" name="prix_uni" data-mask="999999" placeholder="999999">
-                  @if($errors->has('prix_uni')) <div class="help-block">
-                     {{ $errors->first('prix_uni') }}
+                  <label for="prix_achat">Prix d'achat</label>
+                  <input type="text" class="form-control" value="{{ $generation->prix_achat }}" name="prix_achat" data-mask="999999" placeholder="999999">
+                  @if($errors->has('prix_achat')) <div class="help-block">
+                     {{ $errors->first('prix_achat') }}
                   </div>
                 @endif
                 </div>
                 <div class="form-group @if($errors->has('fourni')) has-error @endif">
-                <label for="fourni">Fournisseur</label>
-                <input type="text" class="form-control" value="{{ $generation->fourni }}" name ="fourni">
-                @if($errors->has('fourni')) <div class="help-block">
-                   {{ $errors->first('fourni') }}
+                <label for="prix_uni">Prix de vente</label>
+                <input type="text" class="form-control" value="{{ $generation->prix_uni }}" name ="prix_uni">
+                @if($errors->has('prix_uni')) <div class="help-block">
+                   {{ $errors->first('prix_uni') }}
                 </div>
               @endif
                 </div>
+                <div class="form-group @if($errors->has('fourni')) has-error @endif">
+                  <label for="entree_par">Entrer par</label>
+                  <input type="text" class="form-control" value="{{ $generation->entree_par }}" name ="entree_par">
+                  @if($errors->has('entree_par')) <div class="help-block">
+                     {{ $errors->first('entree_par') }}
+                  </div>
+                @endif
+                  </div>
+                  <div class="form-group @if($errors->has('fourni')) has-error @endif">
+                    <label for="prix_uni*quantite">Solde </label>
+                    <input type="text" class="form-control" value="{{ $generation->prix_uni*quantite }}" name ="prix_uni*quantite">
+                    @if($errors->has('prix_uni*quantite')) <div class="help-block">
+                       {{ $errors->first('prix_uni*quantite') }}
+                    </div>
+                  @endif
+                    </div>
+                    <div class="form-group @if($errors->has('fourni')) has-error @endif">
+                      <label for="date">Date </label>
+                      <input type="text" class="form-control" value="{{ $generation->date }}" name ="date">
+                      @if($errors->has('pdate')) <div class="help-block">
+                         {{ $errors->first('date') }}
+                      </div>
+                    @endif
+                      </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
 									  <button type="submit" class="btn btn-default">Submit</button>
 									</form>

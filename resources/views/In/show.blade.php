@@ -1,6 +1,6 @@
 @extends('main')
 @section('title')
-Entres
+Entrées
 @endsection
 
 
@@ -10,7 +10,7 @@ Entres
       <div class="col-md-12">
         <div class="widget">
           <div class="widget-header">
-            <h2 class="text-center"><strong>Entres</strong></h2>
+            <h2 class="text-center"><strong>Entrées</strong></h2>
 
             <div class="additional-btn">
            <a href="{{ route('get_add_entres') }}"><button class="btn btn-success pull-right">Ajouter</button></a>
@@ -22,31 +22,36 @@ Entres
               <form class='form-horizontal' role='form'>
               <table id="datatables-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
                       <thead>
-                          <tr>
-                              <th>Types</th>
-                              <th>Date</th>
-                              <th>N°=Facture</th>
-                              <th>Quantite</th>
-                              <th>Prix Unitaire</th>
-                              <th>Fournisseur</th>
-                              <th>Solde</th>
-                              <th>Options</th>
-                          </tr>
+                        <tr>
+                          {{-- <th>Types</th> --}}
+                          {{-- <th>N°=Facture</th> --}}
+                          <th>Fournisseur</th>
+                          <th>Stock initial</th>
+                          <th>Stock actuel</th>
+                          <th>Prix d'achat</th>
+                          <th>Prix de vente</th>
+                          <th>Entrer par</th>
+                          <th>Quantité</th>
+                          <th>Solde</th>
+                          <th>Date</th>
+                          <th>Options</th>
+                      </tr>
                       </thead>
-
 
                       <tbody>
                         @foreach($entres as $entre)
                           <tr>
 
-                              <td>{{ $entre->type->name }}</td>
-                              <td>{{ date('d/m/Y',strtotime($entre->date)) }}</td>
-                              <td>{{ $entre->nfacture }}</td>
+                              <td>{{ $entre->fourni }}</td>
                               <td>{{ $entre->quantite}}</td>
+                              <td>{{ $entre->stock_actuel }}</td>
+                              <td>{{ $entre->prix_achat }}</td>
                               <td>{{ $entre->prix_uni}}</td>
-
-                              <td><a href="{{ route('single.client',$entre->id)}}">{{ $entre->fourni }}</a></td>
+                              <td>{{ $entre->entree_par}}</td>
+                              <td>{{ $entre->quantite}}</td>
+                              {{-- <td><a href="{{ route('single.client',$entre->id)}}">{{ $entre->fourni }}</a></td> --}}
                               <td>{!! $entre->solde = $entre->quantite * $entre->prix_uni !!}</td>
+                              <td>{{ date('d/m/Y',strtotime($entre->date)) }}</td>
                               <td>
                           <div class="btn-group btn-group-xs">
                            <a href="{{ route('get_edit_entres',$entre->id) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>

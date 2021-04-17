@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('title')
-  Ajouter Entres
+  Ajouter Entrées
 @endsection
 @section('contents')
       <div class="row">
@@ -10,7 +10,7 @@
 
 						<div class="widget">
 							<div class="widget-header transparent">
-								<h2><strong>Ajouter</strong> Entres</h2>
+								<h2><strong>Ajouter</strong> Entrées</h2>
 
 							</div>
 							<div class="widget-content padding">
@@ -24,43 +24,71 @@
                   @endforeach
 									</select>
                   </div>
-                  <div class="form-group @if($errors->has('date')) has-error @endif">
-                  <label for="date">Date</label>
-                  <input type="text" class="form-control datepicker-input"  name="date" data-mask="9999-99-99">
-                    @if($errors->has('date')) <div class="help-block">
-                       {{ $errors->first('date') }}
+                  <div class="form-group @if($errors->has('fourni')) has-error @endif">
+                  <label for="fourni">Fournisseur</label>
+                  <input type="text" class="form-control fournipicker-input"  name="fourni" data-mask="9999-99-99">
+                    @if($errors->has('fourni')) <div class="help-block">
+                       {{ $errors->first('fourni') }}
                     </div>
                   @endif
                 </div>
-                    <div class="form-group @if($errors->has('nfacture')) has-error @endif">
-										<label for="nfacture">N°Facture</label>
-										<input type="text" class="form-control" name ="nfacture">
-                    @if($errors->has('nfacture')) <div class="help-block">
-                       {{ $errors->first('nfacture') }}
-                    </div>
-                  @endif
-                    </div>
                     <div class="form-group @if($errors->has('quantite')) has-error @endif">
-                    <label for="quantite">Quantité</label>
-                    <input type="text" class="form-control" name="quantite" data-mask="999999" placeholder="999999">
+										<label for="quantite">Stock Initial</label>
+										<input type="text" class="form-control" name ="quantite">
                     @if($errors->has('quantite')) <div class="help-block">
                        {{ $errors->first('quantite') }}
                     </div>
                   @endif
+                    </div>
+                    <div class="form-group @if($errors->has('stock_actuel')) has-error @endif">
+                    <label for="stock_actuel">Stock Actuel</label>
+                    <input type="text" class="form-control" name="stock_actuel" data-mask="999999" placeholder="999999">
+                    @if($errors->has('stock_actuel')) <div class="help-block">
+                       {{ $errors->first('stock_actuel') }}
+                    </div>
+                  @endif
                   </div>
-                  <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
-                  <label for="prix_uni">Prix Unitaire</label>
-                  <input type="text" class="form-control" name="prix_uni" data-mask="999999" placeholder="999999">
-                  @if($errors->has('prix_uni')) <div class="help-block">
-                     {{ $errors->first('prix_uni') }}
+                  <div class="form-group @if($errors->has('prix_achat')) has-error @endif">
+                  <label for="prix_achat">Prix d'achat</label>
+                  <input type="text" class="form-control" name="prix_achat" data-mask="999999" placeholder="999999">
+                  @if($errors->has('prix_achat')) <div class="help-block">
+                     {{ $errors->first('prix_achat') }}
                   </div>
                 @endif
                 </div>
-                <div class="form-group @if($errors->has('fourni')) has-error @endif">
-                <label for="fourni">Fournisseur</label>
-                <input type="text" class="form-control" name ="fourni">
-                @if($errors->has('fourni')) <div class="help-block">
-                   {{ $errors->first('fourni') }}
+                <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
+                <label for="prix_uni">Prix de vente</label>
+                <input type="text" class="form-control" name ="prix_uni">
+                @if($errors->has('prix_uni')) <div class="help-block">
+                   {{ $errors->first('prix_uni') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('entree_par')) has-error @endif">
+                <label for="entree_par">Entrer par</label>
+                <input type="text" class="form-control" name ="entree_par">
+                @if($errors->has('entree_par')) <div class="help-block">
+                   {{ $errors->first('entree_par') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('quantite')) has-error @endif">
+                <label for="quantite">Quantité</label>
+                <input type="text" class="form-control" name ="quantite">
+                @if($errors->has('quantite')) <div class="help-block">
+                   {{ $errors->first('quantite') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('solde')) has-error @endif">
+                <label for="solde">Solde</label>
+                <input type="text" class="form-control" name ="solde">
+                @if($errors->has('solde')) <div class="help-block">
+                   {{ $errors->first('solde') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('date')) has-error @endif">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" name ="date">
+                @if($errors->has('date')) <div class="help-block">
+                   {{ $errors->first('date') }}
                 </div>
               @endif
                 </div>

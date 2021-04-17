@@ -8,7 +8,7 @@
               <a href="profile.html" class="rounded-image profile-image"><img src="{{ URL::to('images/users/user-100.jpg')}}"></a>
             </div>
             <div class="col-xs-8">
-                <div class="profile-text">Welcome <b>Jane</b></div>
+                <div class="profile-text">Bienvenue <b>ghfhgjf</b></div>
               
             </div>
         </div>
@@ -19,21 +19,13 @@
         <!--- Divider -->
         <div id="sidebar-menu">
             <ul>
-            <li class='has_sub'>
-            <a href='javascript:void(0);'>
+            <li>
+                <a href='{{ route('home.dashboard') }}' id="active-home">
             <i class='icon-home-3'></i>
             <span>Dashboard</span> 
-            <span class="pull-right">
-            <i class="fa fa-angle-down"></i>
-            </span>
+            
             </a>
-            <ul>
-            <li>
-            <a href='{{ route('home.dashboard') }}' id="active-home">
-            <span>Dashboard v1</span>
-            </a>
-            </li>
-            </ul>
+      
             </li>
              <li>
             <a href='{{ route('home.types') }}' id="active-type">
@@ -50,7 +42,7 @@
             <li class='has_sub'>
             <a href='javascript:void(0);'>
             <i class='fa fa-table'></i>
-            <span>Entres</span> 
+            <span>Gestion stocks</span> 
             <span class="pull-right">
             <i class="fa fa-angle-down"></i>
             </span>
@@ -58,18 +50,19 @@
             <ul>
             <li>
             <a href='{{ route('show.entres') }}' id="active-entres-table">
-            <span>Table</span>
+            <span>Entrees</span>
             </a>
             </li>
+
             <li>
-            <a href='{{ route('get_add_entres') }}' id="active-entres-add">
-            <span>Ajouter</span>
+                <a href='{{ route('show.sorties') }}' id="active-sorties-table">
+            <span>Sorties</span>
             </a>
             </li>
             </ul>
             </li>
              <li class='has_sub'>
-            <a href='javascript:void(0);'>
+            {{-- <a href='javascript:void(0);'>
             <i class='fa fa-table'></i>
             <span>Sorties</span> 
             <span class="pull-right">
@@ -88,7 +81,7 @@
             </a>
             </li>
             </ul>
-            </li>
+            </li> --}}
             </ul>                  
               <div class="clearfix"></div>
         </div>

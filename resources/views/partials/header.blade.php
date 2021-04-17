@@ -1,12 +1,12 @@
 <!-- Modal Logout -->
 <div class="md-modal md-just-me" id="logout-modal">
   <div class="md-content">
-    <h3><strong>Logout</strong> Confirmation</h3>
+    <h3><strong>Déconnexion</strong> Confirmation</h3>
     <div>
-      <p class="text-center">Are you sure want to logout from this awesome system?</p>
+      <p class="text-center"> êtes vous sûr de vouloir vous déconnecter?</p>
       <p class="text-center">
-      <button class="btn btn-danger md-close">Nope!</button>
-      <a href="login.html" class="btn btn-success md-close">Yeah, I'm sure</a>
+      <button class="btn btn-danger md-close">Non!</button>
+      <a href="login.html" class="btn btn-success md-close">Oui, je suis sûr</a>
       </p>
     </div>
   </div>
@@ -32,13 +32,13 @@
                     <li class="dropdown topbar-profile">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="{{ URL::to('images/users/user-35.jpg')}}"></span> Jane <strong>Doe</strong> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Change Password</a></li>
-                            <li><a href="#">Account Setting</a></li>
+                            <li><a href="#">Mon Profile</a></li>
+                            <li><a href="#">Changer le mot de passe</a></li>
+                            <li><a href="#">Paramétrage du compte</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="icon-help-2"></i> Help</a></li>
-                            <li><a href="lockscreen.html"><i class="icon-lock-1"></i> Lock me</a></li>
-                            <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
+                            <li><a href="#"><i class="icon-help-2"></i> Aide</a></li>
+                            <li><a href="lockscreen.html"><i class="icon-lock-1"></i> Verrouillez-moi</a></li>
+                            <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Déconnexion</a></li>
                         </ul>
                     </li>
                     <li class="right-opener">
