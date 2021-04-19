@@ -31,9 +31,9 @@ class sortieController extends Controller
       }
       return view('sortie.edit')->with('sortie',$sortie)->with('types',$modifier);
    }
-    public function edit_sortie(Request $request,$id)
+    public function edit_sorties(Request $request,$id)
     {
-      $sortie = Sortie::find($id);
+      $sorties = Sortie::find($id);
        //change validate after
       $this->validate($request,[
         //'type_id' => 'required',
@@ -45,16 +45,16 @@ class sortieController extends Controller
         'vendu_par' => 'required'
         ]);
        //$sortie->type_id = $request->type_id;
-        $sortie->date = $request->date;
+        $sorties->date = $request->date;
         //$sortie->nfacture = $request->nfacture;
-        $sortie->client = $request->client;
-        $sortie->montant_total = $request->montant_total;
-        $sortie->montant_paye = $request->montant_paye;
-        $sortie->montant_due = $request->montant_due;
-        $sortie->vendu_par = $request->vendu_par;
-        $sortie->update();
+        $sorties->client = $request->client;
+        $sorties->montant_total = $request->montant_total;
+        $sorties->montant_paye = $request->montant_paye;
+        $sorties->montant_due = $request->montant_due;
+        $sorties->vendu_par = $request->vendu_par;
+        $sorties->update();
         Session::flash('success','Vous avez bien modifier votre stock');
-        return redirect()->route('sortie.home');
+        return redirect()->route('show.sorties');
     }
 
     //delete
@@ -79,22 +79,22 @@ class sortieController extends Controller
 
 
 
-  //---------------------------------------------------------------------------------------------------------------------------------------------------Entres-----------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------------------------------------------------------------------------sortie-----------------------------------------------------------------------------
   //
 
-    public function show_entres()
+    public function show_sortie()
     {
-      $entres = Sortie::where('mode',1)->OrderBy('date')->get();
-      return view('In.show')->with('entres',$entres);
+      $sortie = Sortie::OrderBy('date')->get();
+      return view('In.show')->with('sortie',$sortie);
     }
-    public function get_add_entres()
+    public function get_add_sortie()
     {
       $types = type::all();
       return view('In.add')->with('types',$types);
     }
-    public function post_add_entres(Request $request)
+    public function post_add_sortie(Request $request)
     {
-
+      dd("lol");
       //change validate after
       $this->validate($request,[
         //'type_id' => 'required',
@@ -108,78 +108,79 @@ class sortieController extends Controller
       ], );
 
         // die("OK....");
-        $entres = new Sortie;
-        //$entres->type_id = $request->type_id;
-        $entres->date = $request->date;
-        //$entres->nfacture = $request->nfacture;
-        $entres->client = $request->client;
-        $entres->montant_total = $request->montant_total;
-        $entres->montant_paye = $request->montant_paye;
-        $entres->montant_due = $request->montant_due;
-        $entres->vendu_par = $request->vendu_par;
-        $entres->mode = 1;
-        $entres->save();
+        $sortie = new Sortie;
+        
+        //$sortie->type_id = $request->type_id;
+        $sortie->date = $request->date;
+        //$sortie->nfacture = $request->nfacture;
+        $sortie->client = $request->client;
+        $sortie->montant_total = $request->montant_total;
+        $sortie->montant_paye = $request->montant_paye;
+        $sortie->montant_due = $request->montant_due;
+        $sortie->vendu_par = $request->vendu_par;
+        // $sortie->mode = 1;
+        $sortie->save();
 
 
 
         Session::flash('success','Vous Avez Bien Ajouter votre nouveaux Commande');
-        return redirect()->route('show.entres');
+        return redirect()->route('show.sortie');
 
     }
-    //Edit entres
+    //Edit sortie
 
-    public function get_edit_entres($id)
-    {
-      $entres = Sortie::find($id);
-      $types = type::all();
-      $typo = [];
-      foreach($types as $type)
-      {
-        $typo[$type->id] = $type->name;
-      }
-      return view('In.edit')->with('entres',$entres)->with('types',$typo);
-    }
+    // public function get_edit_sortie($id)
+    // {
+    //   $sortie = Sortie::find($id);
+    //   $types = type::all();
+    //   $typo = [];
+    //   foreach($types as $type)
+    //   {
+    //     $typo[$type->id] = $type->name;
+    //   }
+    //   return view('In.edit')->with('sortie',$sortie)->with('types',$typo);
+    // }
 
-    public function edit_entres(Request $request,$id)
-    {
-      $entres = Sortie::find($id);
-       //change validate after
-      $this->validate($request,[
-       // 'type_id' => 'required',
-        'date' => 'required',
-        //'nfacture' => 'required',
-        'client' => 'required',
-        'montant_total' => 'required',
-        'montant_paye' => 'required',
-        'montant_due' => 'required',
-        'vendu_par' => 'required'
-        ]);
-       $entres->type_id = $request->type_id;
-        $entres->date = $request->date;
-        //$entres->nfacture = $request->nfacture;
-        $entres->client = $request->client;
-        $entres->montant_total = $request->montant_total;
-        $entres->montant_paye = $request->montant_paye;
-        $entres->montant_due = $request->montant_due;
-        $entres->vendu_par = $request->vendu_par;
-        $entres->mode = 1;
-        $entres->update();
-        Session::flash('success','Vous avez bien modifier votre entres');
-        return redirect()->route('show.entres');
-    }
+    // public function edit_sortie(Request $request,$id)
+    // {
+    //   $sortie = Sortie::find($id);
+    //    //change validate after
+    //   $this->validate($request,[
+    //    // 'type_id' => 'required',
+    //     'date' => 'required',
+    //     //'nfacture' => 'required',
+    //     'client' => 'required',
+    //     'montant_total' => 'required',
+    //     'montant_paye' => 'required',
+    //     'montant_due' => 'required',
+    //     'vendu_par' => 'required'
+    //     ]);
+    //    $sortie->type_id = $request->type_id;
+    //     $sortie->date = $request->date;
+    //     //$sortie->nfacture = $request->nfacture;
+    //     $sortie->client = $request->client;
+    //     $sortie->montant_total = $request->montant_total;
+    //     $sortie->montant_paye = $request->montant_paye;
+    //     $sortie->montant_due = $request->montant_due;
+    //     $sortie->vendu_par = $request->vendu_par;
+    //     // $sortie->mode = 1;
+    //     $sortie->update();
+    //     Session::flash('success','Vous avez bien modifier votre sortie');
+    //     return redirect()->route('show.sortie');
+    // }
 
-    //delete
+    // //delete
 
-    public function destroy_entres($id)
-    {
-      $entres = Sortie::find($id);
-      $entres->delete();
+    // public function destroy_sortie($id)
+    // {
+    //   $sortie = Sortie::find($id);
+    //   $sortie->delete();
 
-      Session::flash('failed','Vous avez bien supprimer votre entres');
-      return redirect()->route('show.entres');
+    //   Session::flash('failed','Vous avez bien supprimer votre sortie');
+    //   return redirect()->route('show.sortie');
 
-    }
-    //---------------------------------------------------------------------------------------------------------------------------------------------END ENTRES-------------------------------------------------------------------------------
+    // }
+    //---------------------------------------------------------------------------------------------------------------------------------------------END sortie-------------------------------------------------------------------------------
 
 
 
@@ -188,7 +189,7 @@ class sortieController extends Controller
 //
  public function show_sorties()
     {
-      $sorties = Sortie::where('mode','=','2')->OrderBy('date')->get();
+      $sorties = Sortie::OrderBy('date')->get();
       return view('Out.show')->with('sorties',$sorties);
     }
     public function get_add_sorties()
@@ -198,11 +199,10 @@ class sortieController extends Controller
     }
     public function post_add_sorties(Request $request)
     {
-      //change validate after
+     
       $this->validate($request,[
         'type_id' => 'required',
         'date' => 'required',
-        'nfacture' => 'required',
         'client' => 'required',
         'montant_total' => 'required',
         'montant_paye' => 'required',
@@ -210,19 +210,22 @@ class sortieController extends Controller
         'vendu_par' => 'required'
         ]);
         $sorties = new Sortie;
-        $sorties->type_id = $request->type_id;
+        // $sorties->type_id = $request->type_id;
         $sorties->date = $request->date;
         //$sorties->nfacture = $request->nfacture;
-        $sorties->client = $request->prix_uni;
+        $sorties->client = $request->client;
         $sorties->montant_total = $request->montant_total;
         $sorties->montant_paye = $request->montant_paye;
         $sorties->montant_due = $request->montant_due;
         $sorties->vendu_par = $request->vendu_par;
-        $sorties->mode = 2;
+        
+        // $sorties->mode = 2;
         $sorties->save();
 
         Session::flash('success','Vous Avez Bien Ajouer votre nouveaux Commande');
-        return redirect()->route('show.sorties');
+        // die($request->client);
+
+        return redirect()->route("show.sorties");
 
     }
     //Edit sorties
@@ -260,7 +263,7 @@ class sortieController extends Controller
         $sorties->montant_paye = $request->montant_paye;
         $sorties->montant_due = $request->montant_due;
         $sorties->vendu_par = $request->vendu_par;
-        $sorties->mode = 2;
+        // $sorties->mode = 2;
         $sorties->update();
         Session::flash('success','Vous avez bien modifier votre sorties');
         return redirect()->route('show.sorties');
@@ -323,7 +326,7 @@ class sortieController extends Controller
         'vendu_par' => 'required'
         ]);
         $types->date = $request->date;
-        $types->client = $request->nfacture;
+        // $types->client = $request->nfacture;
         $types->montant_total = $request->prix_uni;
         $types->montant_paye = $request->quantite;
         $types->montant_due = $request->fourni;
@@ -340,9 +343,9 @@ class sortieController extends Controller
    // {
     //  $client = client::find($id);
     //  $sortie = sortie::where('fourni',$client->name);
-    //  $entres = $sortie->where('mode',1)->get();
+    //  $sortie = $sortie->where('mode',1)->get();
     //  $sorties = $sortie->where('mode',2)->get();
-    //  return view('client.single')->with('entres',$entres)->with('sorties',$sorties)->with('client',$client);
+    //  return view('client.single')->with('sortie',$sortie)->with('sorties',$sorties)->with('client',$client);
   //  }
 
     public function single_client($id)
@@ -350,18 +353,18 @@ class sortieController extends Controller
       $sortie = Sortie::find($id);   //the sortie row where id = $id
       $client = client::where('name',$sortie->fourni)->first(); //client name
       $sorties = Sortie::where('fourni',$client->name); // sortie where the fourni have the name of existing client
-      $entres = $sorties->where('mode',1)->get();
-      $sorties = $sorties->where('mode',2)->get();
-      return view('client.single')->with('entres',$entres)->with('sorties',$sorties)->with('client',$client);
+      // $sortie = $sorties->where('mode',1)->get();
+      // $sorties = $sorties->where('mode',2)->get();
+      return view('client.single')->with('sortie',$sortie)->with('sorties',$sorties)->with('client',$client);
 
     }
     public function get_edit_client($id)
     {
       $client = client::find($id);
       $sorties = Sortie::where('fourni',$client->name); // sortie where the fourni have the name of existing client
-      $entres = $sorties->where('mode',1)->get();
-      $sorties = $sorties->where('mode',2)->get();
-      return view('client.edit')->with('entres',$entres)->with('sorties',$sorties)->with('client',$client);
+      // $sortie = $sorties->where('mode',1)->get();
+      // $sorties = $sorties->where('mode',2)->get();
+      return view('client.edit')->with('sortie',$sortie)->with('sorties',$sorties)->with('client',$client);
 
     }
     public function edit_client(Request $request,$id)

@@ -15,7 +15,7 @@ class CreateSortieTable extends Migration
         Schema::create('sortie', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mode');
-            //$table->integer('type_id');
+            $table->integer('type_id');
             $table->string('date');
             $table->string('client');
             $table->integer('montant_total');

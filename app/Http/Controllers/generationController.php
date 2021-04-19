@@ -81,25 +81,30 @@ class generationController extends Controller
 
     public function show_entres()
     {
-      $entres = Generation::where('mode',1)->OrderBy('date')->get();
+      $entres = Generation::OrderBy('date')->get();
       return view('In.show')->with('entres',$entres);
     }
+    
     public function get_add_entres()
     {
-      $types = type::all();
-      return view('In.add')->with('types',$types);
+      $categorie = \DB::table('catégorie')->get();
+      $produit = \DB::table('produit')->get();
+      $vendeur = \DB::table('vendeur')->get();
+      return view('In.add')->with(['categorie'=>$categorie,'produit'=>$produit,'vendeur'=>$vendeur]);
     }
     public function post_add_entres(Request $request)
     {
 
       //change validate after
       $this->validate($request,[
-        'type_id' => 'required',
+        'produit_id' => 'required',
         'date' => 'required',
         // 'nfacture' => 'required',
         'quantite' => 'required',
-        'prix_uni' => 'required',
-        'fourni' => 'required'
+        'prix_vente' => 'required',
+        'fourni' => 'required',
+        'prix_achat' => 'required',
+        'prix_vente' => 'required',
       ], );
 
         // die("OK....");
@@ -107,15 +112,18 @@ class generationController extends Controller
         //$entres->type_id = $request->type_id;
         $entres->date = $request->date;
         //$entres->nfacture = $request->nfacture;
-        $entres->prix_uni = $request->prix_uni;
+        $entres->prix_uni = $request->prix_vente;
         $entres->quantite = $request->quantite;
-        $entres->fourni = $request->fourni;
-        $entres->mode = 1;
+        $entres->id_vendeur = $request->fourni;
+        $entres->prix_achat = $request->prix_achat;
+        $entres->id_produit = $request->produit_id;
+        $entres->stock_actuel = $request->quantite;
+        $entres->entree_par = 1;
         $entres->save();
 
 
 
-        Session::flash('success','Vous Avez Bien Ajouter votre nouveaux Commande');
+        Session::flash('success','Vous Avez Bien Ajouter votre nouvelle Commande');
         return redirect()->route('show.entres');
 
     }
@@ -124,34 +132,51 @@ class generationController extends Controller
     public function get_edit_entres($id)
     {
       $entres = Generation::find($id);
-      $types = type::all();
-      $typo = [];
-      foreach($types as $type)
+ 
+      $entres = Generation::find($id);
+      $categorie = \DB::table('catégorie')->get();
+      $produits = \DB::table('produit')->get();
+      $vendeurs = \DB::table('vendeur')->get();
+
+      $produit = [];
+      foreach($produits as $prod)
       {
-        $typo[$type->id] = $type->name;
+        $produit[$prod->id] = $prod->nom_produit;
       }
-      return view('In.edit')->with('entres',$entres)->with('types',$typo);
+      $vendeur = [];
+      foreach($vendeurs as $vend)
+      {
+        $vendeur[$vend->id] = $vend->nom_vendeur;
+      }
+
+      return view('In.edit')->with(['entres'=>$entres,'categorie'=>$categorie,'produit'=>$produit,'vendeur'=>$vendeur]);
+
     }
 
     public function edit_entres(Request $request,$id)
     {
       $entres = Generation::find($id);
        //change validate after
-      $this->validate($request,[
-        'type_id' => 'required',
-        'date' => 'required',
-        'nfacture' => 'required',
-        'quantite' => 'required',
-         'prix_uni' => 'required',
-        'fourni' => 'required'
-        ]);
-       $entres->type_id = $request->type_id;
-        $entres->date = $request->date;
-        $entres->nfacture = $request->nfacture;
-        $entres->prix_uni = $request->prix_uni;
-        $entres->quantite = $request->quantite;
-        $entres->fourni = $request->fourni;
-        $entres->mode = 1;
+      //  $this->validate($request,[
+   
+      
+      //   // 'nfacture' => 'required',
+      //   'quantite' => 'required',
+      //   'prix_vente' => 'required',
+        
+      //   'prix_achat' => 'required',
+      //   'prix_vente' => 'required',
+      // ], );
+      
+      $entres->date = $request->date;
+      //$entres->nfacture = $request->nfacture;
+      $entres->prix_uni = $request->prix_vente;
+      $entres->quantite = $request->quantite;
+      $entres->id_vendeur = $request->id_vendeur??$entres->id_vendeur;
+      $entres->prix_achat = $request->prix_achat;
+      $entres->id_produit = $request->id_produit??$entres->id_produit;
+      $entres->stock_actuel = $request->quantite;
+      $entres->entree_par = 1;
         $entres->update();
         Session::flash('success','Vous avez bien modifier votre entres');
         return redirect()->route('show.entres');

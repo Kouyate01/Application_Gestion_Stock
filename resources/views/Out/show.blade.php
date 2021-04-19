@@ -54,8 +54,10 @@ Sorties
                               {{--<td>{{}}--}}
                               {{--<td>{!! $sortie->solde = $sortie->quantite * $sortie->prix_uni !!}</td>--}}
                               <td>
+                          
                           <div class="btn-group btn-group-xs">
-                           <a href="{{ route('get_edit_sorties',$sortie->id) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                            <a style="display: none" href="{{ }}"></a>
+                            <a href="{{ route('get_edit_sorties',$sortie->id) }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('destroy.sorties',$sortie->id) }}" class="btn btn-default"><i class="fa fa-trash"></i></a>
                             
                           </div>

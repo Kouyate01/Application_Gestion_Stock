@@ -25,32 +25,46 @@ Entrées
                         <tr>
                           {{-- <th>Types</th> --}}
                           {{-- <th>N°=Facture</th> --}}
+                          <th>Catégorie</th>
+                          <th>Produit</th>
+                      
                           <th>Fournisseur</th>
                           <th>Stock initial</th>
                           <th>Stock actuel</th>
                           <th>Prix d'achat</th>
                           <th>Prix de vente</th>
                           <th>Entrer par</th>
-                          <th>Quantité</th>
-                          <th>Solde</th>
+ 
+                          {{-- <th>Solde</th> --}}
                           <th>Date</th>
                           <th>Options</th>
                       </tr>
                       </thead>
 
                       <tbody>
+                        
                         @foreach($entres as $entre)
+                        @php
+               
+                            $produit = DB::table('produit')->where('id',$entre->id_produit)->first();
+                            $categorie = DB::table('catégorie')->where('id',$produit->catégorie_produit)->first();
+                            $vendeur = DB::table('vendeur')->where('id',$entre->id_vendeur)->first();
+                            $by = DB::table('users')->where('id',$entre->entree_par)->first();
+                              
+                        @endphp
                           <tr>
-
-                              <td>{{ $entre->fourni }}</td>
+                              <td>{{ $categorie->nom }}</td>
+                              <td>{{ $produit->nom_produit}}</td>
+                              <td>{{ $vendeur->nom_vendeur }}</td>
+                       
                               <td>{{ $entre->quantite}}</td>
                               <td>{{ $entre->stock_actuel }}</td>
                               <td>{{ $entre->prix_achat }}</td>
                               <td>{{ $entre->prix_uni}}</td>
-                              <td>{{ $entre->entree_par}}</td>
-                              <td>{{ $entre->quantite}}</td>
+                              <td>{{ $by->noms}}</td>
+              
                               {{-- <td><a href="{{ route('single.client',$entre->id)}}">{{ $entre->fourni }}</a></td> --}}
-                              <td>{!! $entre->solde = $entre->quantite * $entre->prix_uni !!}</td>
+                              {{-- <td>{!! $entre->solde = $entre->stock_actuel * $entre->prix_uni !!}</td> --}}
                               <td>{{ date('d/m/Y',strtotime($entre->date)) }}</td>
                               <td>
                           <div class="btn-group btn-group-xs">

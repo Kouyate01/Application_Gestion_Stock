@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Generation;
+use App\Sortie;
 class DashboardController extends Controller
 {
     public function home()
     {
-    	$entres = Generation::where('mode', 1)->take(10)->get();
-        $sorties = Sortie::where('mode', 2)->take(10)->get();
+    	$entres = Generation::take(10)->get();
+        $sorties = Sortie::take(10)->get();
     	return view('dashboard.home')->with('entres',$entres)->with('sorties',$sorties);
     }
 }

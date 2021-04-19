@@ -27,11 +27,11 @@
                     </div>
                   @endif
                 </div>
-                    <div class="form-group @if($errors->has('nfacture')) has-error @endif">
-										<label for="nfacture">N°Facture</label>
-										<input type="text" class="form-control" value="{{ $sorties->nfacture }}" name ="nfacture">
-                    @if($errors->has('nfacture')) <div class="help-block">
-                       {{ $errors->first('nfacture') }}
+                    <div class="form-group @if($errors->has('client')) has-error @endif">
+										<label for="client">Client</label>
+										<input type="text" class="form-control" value="{{ $sorties->client }}" name ="client">
+                    @if($errors->has('client')) <div class="help-block">
+                       {{ $errors->first('client') }}
                     </div>
                   @endif
                     </div>
@@ -43,19 +43,33 @@
                     </div>
                   @endif
                   </div>
-                  <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
-                  <label for="prix_uni">Prix Unitaire</label>
-                  <input type="text" class="form-control" value="{{ $sorties->prix_uni }}" name="prix_uni" data-mask="999999" placeholder="999999">
-                  @if($errors->has('prix_uni')) <div class="help-block">
-                     {{ $errors->first('prix_uni') }}
+                  <div class="form-group @if($errors->has('montant_total')) has-error @endif">
+                  <label for="montant_total">Montant Total</label>
+                  <input type="text" class="form-control" value="{{ $sorties->montant_total }}" name="montant_total" data-mask="999999" placeholder="999999">
+                  @if($errors->has('montant_total')) <div class="help-block">
+                     {{ $errors->first('montant_total') }}
                   </div>
                 @endif
                 </div>
-                <div class="form-group @if($errors->has('fourni')) has-error @endif">
-                <label for="fourni">Fournisseur</label>
-                <input type="text" class="form-control" value="{{ $sorties->fourni }}" name ="fourni">
-                @if($errors->has('fourni')) <div class="help-block">
-                   {{ $errors->first('fourni') }}
+                <div class="form-group @if($errors->has('montant_paye')) has-error @endif">
+                <label for="montant_paye">Montant Payé</label>
+                <input type="text" class="form-control" value="{{ $sorties->montant_paye }}" name ="montant_paye">
+                @if($errors->has('montant_paye')) <div class="help-block">
+                   {{ $errors->first('montant_paye') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('montant_due')) has-error @endif">
+                <label for="montant_due">Montant Due</label>
+                <input type="text" class="form-control" value="{{ $sorties->montant_due }}" name ="montant_due">
+                @if($errors->has('montant_due')) <div class="help-block">
+                   {{ $errors->first('montant_due') }}
+                </div>
+              @endif
+              <div class="form-group @if($errors->has('vendu_par')) has-error @endif">
+                <label for="vendu_par">Vendu par </label>
+                <input type="text" class="form-control" value="{{ $sorties->vendu_par }}" name ="vendu_par">
+                @if($errors->has('vendu_par')) <div class="help-block">
+                   {{ $errors->first('vendu_par') }}
                 </div>
               @endif
                 </div>

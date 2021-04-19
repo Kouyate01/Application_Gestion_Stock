@@ -12,112 +12,60 @@
 
 <div class="row">
 
-    {{-- <div class="col-md-12">
-      <div class="widget">
-        <div class="widget-header transparent">
-          <h2 class="text-center"><strong>Entres</strong></h2>
-          <div class="additional-btn">
-            <a href="{{ route('show.entres') }}" class="infos-dashboard">Plus d'options ...</a>
-          </div>
-        </div>
-        <div class="widget-content">
-          <div class="table-responsive">
-            <table data-sortable class="table table-hover table-striped">
-              <thead>
-                    <thead>
-                          <tr>
-                              <th>Types</th>
-                              <th>Date</th>
-                              <th>N°=Facture</th>
-                              <th>Quantite</th>
-                              <th>Prix Unitaire</th>
-                              <th>Fournisseur</th>
-                          </tr>
-                      </thead>
-              </thead>
 
-               <tbody>
-                        @foreach($entres as $entre)
-                          <tr>
+    <div class="panel panel-info col-lg-4 " style="font-size: 25px">
+      <div class="panel-heading text-center">Total fournisseurs</div>
+      <div class="panel-body text-center" >
+  
+          @php
+            echo count(DB::table('vendeur')->get());
+        @endphp
 
-                              <td>{{ $entre->type->name }}</td>
-                              <td>{{ $entre->date }}</td>
-                              <td>{{ $entre->nfacture }}</td>
-                              <td>{{ $entre->quantite}}</td>
-                              <td>{{ $entre->prix_uni}}</td>
-                              <td>{{ $entre->fourni }}</td>
-
-                          </tr>
-                        @endforeach
-
-                      </tbody>
-            </table>
-          </div>
-        </div>
       </div>
-
-    </div>
-
-    <div class="col-md-12">
-      <div class="widget">
-        <div class="widget-header transparent">
-          <h2 class="text-center"><strong>Sorties</strong></h2>
-          <div class="additional-btn">
-            <a href="{{ route('show.sorties') }}" class="infos-dashboard">Plus d'options ...</a>
-          </div>
-        </div>
-        <div class="widget-content">
-          <div class="table-responsive">
-            <table data-sortable class="table table-hover table-striped">
-              <thead>
-                    <thead>
-                          <tr>
-                              <th>Types</th>
-                              <th>Date</th>
-                              <th>N°=Facture</th>
-                              <th>Quantite</th>
-                              <th>Prix Unitaire</th>
-                              <th>Fournisseur</th>
-                          </tr>
-                      </thead>
-              </thead>
-
-               <tbody>
-                        @foreach($sorties as $sortie)
-                          <tr>
-
-                              <td>{{ $sortie->type->name }}</td>
-                              <td>{{ $sortie->date }}</td>
-                              <td>{{ $sortie->nfacture }}</td>
-                              <td>{{ $sortie->quantite}}</td>
-                              <td>{{ $sortie->prix_uni}}</td>
-                              <td>{{ $sortie->fourni }}</td>
-
-                          </tr>
-                        @endforeach
-
-                      </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </div> --}}
-    <div class="panel panel-info col-lg-1 mr-lg-6" >
-      <div class="panel-heading">Panel Heading</div>
-      <div class="panel-body">Panel Content</div>
       {{-- <div class="panel-footer">Panel Footer</div> --}}
     </div>
-    <div class="panel  col-md-1 mr-lg-6">
-      <div class="panel-heading">Panel Heading</div>
-      <div class="panel-body">Panel Content</div>
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading">Total Clients</div>
+      <div class="panel-body">
+        @php
+            echo count(DB::table('clients')->get());
+        @endphp
+      </div>
     
     </div>
-    <div class="panel panel-default col-md-1">
-      <div class="panel-heading">Panel Heading</div>
-      <div class="panel-body">Panel Content</div>
-      <div class="panel-footer">Panel Footer</div>
+
+    <div class="panel  col-md-4">
+      <div class="panel-heading">Total Produits</div>
+      <div class="panel-body">@php
+        echo count(DB::table('produit')->get());
+    @endphp</div>
+    
     </div>
+</div>
+
+<div class="row">
+
+
+  <div class="panel panel-info col-lg-4 " >
+    <div class="panel-heading">Stocks Total vendu </div>
+    <div class="panel-body">
+      @php
+
+      @endphp
+    </div>
+    {{-- <div class="panel-footer">Panel Footer</div> --}}
+  </div>
+  <div class="panel panel-default col-md-4">
+    <div class="panel-heading">Quantité total vendu</div>
+    <div class="panel-body">Panel Content</div>
+  
+  </div>
+
+  <div class="panel  col-md-4">
+    <div class="panel-heading">Total Produits</div>
+    <div class="panel-body">Panel Content</div>
+  
+  </div>
 </div>
 @endsection
 @section('scripts')

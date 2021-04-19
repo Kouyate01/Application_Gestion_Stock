@@ -16,18 +16,22 @@
                    {!! Form::model($entres,['route' => ['edit.entres', $entres->id],'method'=>'POST']) !!}
 
 
-                    <div class="form-group @if($errors->has('type_id')) has-error @endif">
-                      {{ Form::label('type_id','Types : ') }}
-                      {{ Form::select('type_id',$types,null, ['class' => 'form-control']) }}
+                    <div class="form-group @if($errors->has('produit_id')) has-error @endif">
+                      {{ Form::label('id_produit','Produit : ') }}
+                      {{ Form::select('id_produit',$produit,null, ['class' => 'form-control']) }}
                   </div>
-                  <div class="form-group @if($errors->has('fourni')) has-error @endif">
+                  <div class="form-group @if($errors->has('vendeur_id')) has-error @endif">
+                    {{ Form::label('id_vendeur','Fournisseur : ') }}
+                    {{ Form::select('id_vendeur',$vendeur,null, ['class' => 'form-control']) }}
+                </div>
+                  {{-- <div class="form-group @if($errors->has('fourni')) has-error @endif">
                   <label for="fourni">Fournisseur</label>
                   <input type="text" class="form-control datepicker-input" value="{{ $entres->fourni }}"  name="fourni" data-mask="9999-99-99">
                     @if($errors->has('fourni')) <div class="help-block">
                        {{ $errors->first('fourni') }}
                     </div>
                   @endif
-                </div>
+                </div> --}}
                     <div class="form-group @if($errors->has('quantite')) has-error @endif">
 										<label for="quantite">Stock initial</label>
 										<input type="text" class="form-control" value="{{ $entres->quantite }}" name ="quantite">
@@ -54,45 +58,30 @@
                 </div>
                 <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
                 <label for="prix_uni">Prix de vente</label>
-                <input type="text" class="form-control" value="{{ $entres->prix_uni }}" name ="prix_uni">
+                <input type="text" class="form-control" value="{{ $entres->prix_uni }}" name ="prix_vente">
                 @if($errors->has('prix_uni')) <div class="help-block">
                    {{ $errors->first('prix_uni') }}
                 </div>
               @endif
                 </div>
-                <div class="form-group @if($errors->has('entree_par')) has-error @endif">
+                {{-- <div class="form-group @if($errors->has('entree_par')) has-error @endif">
                   <label for="entree_par">Entrer par</label>
                   <input type="text" class="form-control" value="{{ $entres->entree_par }}" name ="entree_par">
                   @if($errors->has('entree_par')) <div class="help-block">
                      {{ $errors->first('entree_par') }}
                   </div>
                 @endif
-                  </div>
-                  <div class="form-group @if($errors->has('quantite')) has-error @endif">
-                    <label for="quantite">Quantité</label>
-                    <input type="text" class="form-control" value="{{ $entres->quantite }}" name ="quantite">
-                    @if($errors->has('quantite')) <div class="help-block">
-                       {{ $errors->first('quantite') }}
-                    </div>
-                  @endif
-                    </div>
-                  <div class="form-group @if($errors->has('solde')) has-error @endif">
-                    <label for="solde">Solde</label>
-                    <input type="text" class="form-control" value="{{ $entres->solde }}" name ="solde">
-                    @if($errors->has('solde')) <div class="help-block">
-                       {{ $errors->first('solde') }}
-                    </div>
-                  @endif
-                    </div>
+                  </div> --}}
+                
                     <div class="form-group @if($errors->has('date')) has-error @endif">
                       <label for="date">Date</label>
-                      <input type="text" class="form-control" value="{{ $entres->date }}" name ="date">
+                      <input type="date" class="form-control" value="{{ $entres->date }}" name ="date">
                       @if($errors->has('date')) <div class="help-block">
                          {{ $errors->first('date') }}
                       </div>
                     @endif
                       </div>
-									  <button type="submit" class="btn btn-default">Submit</button>
+									  <button type="submit" class="btn btn-default">Valider</button>
 									{{ Form::close() }}
 								</div>
 							</div>

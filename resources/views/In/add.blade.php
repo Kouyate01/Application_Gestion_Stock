@@ -16,38 +16,48 @@
 							<div class="widget-content padding">
 								<div id="basic-form">
 									<form action="{{ route('add.entres') }}" method="POST" role="form">
-                    <div class="form-group @if($errors->has('type_id')) has-error @endif">
-										<label for="type_id">Types</label>
-									<select class="form-control" name="type_id">
-                    @foreach($types as $type)
-									  <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    {{-- <div class="form-group @if($errors->has('cate_id')) has-error @endif">
+										<label for="cate_id">Categorie</label>
+									<select class="form-control" name="cate_id">
+                    @foreach($categorie as $cate)
+									  <option value="{{ $cate->id }}">{{ $cate->nom }}</option>
+                  @endforeach
+									</select>
+                  </div> --}}
+
+                  <div class="form-group @if($errors->has('produit_id')) has-error @endif">
+										<label for="produit_id">Produit</label>
+									<select class="form-control" name="produit_id">
+                    @foreach($produit as $prod)
+									  <option value="{{ $prod->id }}">{{ $prod->nom_produit }}</option>
                   @endforeach
 									</select>
                   </div>
+
                   <div class="form-group @if($errors->has('fourni')) has-error @endif">
                   <label for="fourni">Fournisseur</label>
-                  <input type="text" class="form-control fournipicker-input"  name="fourni" data-mask="9999-99-99">
-                    @if($errors->has('fourni')) <div class="help-block">
-                       {{ $errors->first('fourni') }}
-                    </div>
-                  @endif
+                  <select class="form-control" name="fourni">
+                    @foreach($vendeur as $vend)
+									  <option value="{{ $vend->id }}">{{ $vend->nom_vendeur }}</option>
+                  @endforeach
+									</select>
                 </div>
                     <div class="form-group @if($errors->has('quantite')) has-error @endif">
-										<label for="quantite">Stock Initial</label>
+										<label for="quantite">Quantité</label>
 										<input type="text" class="form-control" name ="quantite">
                     @if($errors->has('quantite')) <div class="help-block">
                        {{ $errors->first('quantite') }}
                     </div>
                   @endif
                     </div>
-                    <div class="form-group @if($errors->has('stock_actuel')) has-error @endif">
+                    {{-- <div class="form-group @if($errors->has('stock_actuel')) has-error @endif">
                     <label for="stock_actuel">Stock Actuel</label>
                     <input type="text" class="form-control" name="stock_actuel" data-mask="999999" placeholder="999999">
                     @if($errors->has('stock_actuel')) <div class="help-block">
                        {{ $errors->first('stock_actuel') }}
                     </div>
                   @endif
-                  </div>
+                  </div> --}}
                   <div class="form-group @if($errors->has('prix_achat')) has-error @endif">
                   <label for="prix_achat">Prix d'achat</label>
                   <input type="text" class="form-control" name="prix_achat" data-mask="999999" placeholder="999999">
@@ -58,35 +68,16 @@
                 </div>
                 <div class="form-group @if($errors->has('prix_uni')) has-error @endif">
                 <label for="prix_uni">Prix de vente</label>
-                <input type="text" class="form-control" name ="prix_uni">
-                @if($errors->has('prix_uni')) <div class="help-block">
-                   {{ $errors->first('prix_uni') }}
+                <input type="text" class="form-control" name ="prix_vente">
+                @if($errors->has('prix_vente')) <div class="help-block">
+                   {{ $errors->first('prix_vente') }}
                 </div>
               @endif
-              <div class="form-group @if($errors->has('entree_par')) has-error @endif">
-                <label for="entree_par">Entrer par</label>
-                <input type="text" class="form-control" name ="entree_par">
-                @if($errors->has('entree_par')) <div class="help-block">
-                   {{ $errors->first('entree_par') }}
-                </div>
-              @endif
-              <div class="form-group @if($errors->has('quantite')) has-error @endif">
-                <label for="quantite">Quantité</label>
-                <input type="text" class="form-control" name ="quantite">
-                @if($errors->has('quantite')) <div class="help-block">
-                   {{ $errors->first('quantite') }}
-                </div>
-              @endif
-              <div class="form-group @if($errors->has('solde')) has-error @endif">
-                <label for="solde">Solde</label>
-                <input type="text" class="form-control" name ="solde">
-                @if($errors->has('solde')) <div class="help-block">
-                   {{ $errors->first('solde') }}
-                </div>
-              @endif
+              
+             
               <div class="form-group @if($errors->has('date')) has-error @endif">
                 <label for="date">Date</label>
-                <input type="text" class="form-control" name ="date">
+                <input type="date" class="form-control" name ="date">
                 @if($errors->has('date')) <div class="help-block">
                    {{ $errors->first('date') }}
                 </div>
