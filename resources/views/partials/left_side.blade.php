@@ -37,14 +37,14 @@
                     </a>
                     <ul>
                         <li>
-                            <a href='#' id="active-prod-table">
+                            <a href='{{ route('show.produit') }}' id="active-prod-table">
                                 <span>Produits</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href='#' id="active-cate-table">
-                                <span>Categories</span>
+                            <a href='{{ route('show.categorie') }}' id="active-cate-table">
+                                <span>Catégories</span>
                             </a>
                         </li>
                         <li>
@@ -65,7 +65,7 @@
                     <ul>
                         <li>
                             <a href='{{ route('show.entres') }}' id="active-entres-table">
-                                <span>Entrees</span>
+                                <span>Entrées</span>
                             </a>
                         </li>
 

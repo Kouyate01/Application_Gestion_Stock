@@ -14,7 +14,7 @@ Route::get('home',function(){
 return view('auth.login');
 });
 Route::get('/',[
-  'uses' => 'DashboardController@home',
+  'uses' => 'DashboardController@home', 
   'as' => 'home.dashboard'
   ]);
 
@@ -149,3 +149,63 @@ Route::get('types/delete/{id}',[
   'uses' => 'sortieController@destroy_page_types',
   'as' => 'destroy.page.types'
   ]);
+
+  //----------------------------------------------------------------------------------------------
+  Route::get('/categorie/add',[
+    'uses' => 'categorieController@get_add_categorie',
+    'as' => 'get_add_categorie'
+  ]);
+  Route::post('categorie/add',[
+    'uses' => 'categorieController@post_add_categorie',
+    'as' => 'add.categorie'
+  ]);
+  Route::get('categorie',[
+    'uses' => 'categorieController@show_categorie',
+    'as' => 'show.categorie'
+  ]);
+  //Edit entres
+  Route::get('categorie/modifier/{id}',[
+    'uses' => 'categorieController@get_edit_categorie',
+    'as' => 'get_edit_categorie'
+    ]);
+  Route::post('categorie/modifier/{id}',[
+    'uses' => 'categorieController@edit_categorie',
+    'as' => 'edit.categorie'
+  ]);
+  
+  //delete
+  
+  Route::get('categorie/delete/{id}',[
+    'uses' => 'categorieController@destroy_categorie',
+    'as' => 'destroy.categorie'
+    ]);
+
+    //----------------------------------------------------------------------------------------------
+  Route::get('/produit/add',[
+    'uses' => 'produitController@get_add_produit',
+    'as' => 'get_add_produit'
+  ]);
+  Route::post('produit/add',[
+    'uses' => 'produitController@post_add_produit',
+    'as' => 'add.produit'
+  ]);
+  Route::get('produit',[
+    'uses' => 'produitController@show_produit',
+    'as' => 'show.produit'
+  ]);
+  //Edit entres
+  Route::get('produit/modifier/{id}',[
+    'uses' => 'produitController@get_edit_produit',
+    'as' => 'get_edit_produit'
+    ]);
+  Route::post('produit/modifier/{id}',[
+    'uses' => 'produitController@edit_produit',
+    'as' => 'edit.produit'
+  ]);
+  
+  //delete
+  
+  Route::get('produit/delete/{id}',[
+    'uses' => 'produitController@destroy_produit',
+    'as' => 'destroy.produit'
+    ]);
