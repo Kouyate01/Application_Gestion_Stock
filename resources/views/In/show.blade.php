@@ -12,7 +12,7 @@ Entrées
           <div class="widget-header">
             <h2 class="text-center"><strong>Entrées</strong></h2>
 
-            <div class="additional-btn">
+            <div class="additional-btn">  
            <a href="{{ route('get_add_entres') }}"><button class="btn btn-success pull-right">Ajouter</button></a>
             </div>
           </div>
@@ -46,14 +46,14 @@ Entrées
                         @foreach($entres as $entre)
                         @php
                
-                            $produit = DB::table('produit')->where('id',$entre->id_produit)->first();
-                            $categorie = DB::table('catégorie')->where('id',$produit->catégorie_produit)->first();
+                            $produit = DB::table('Produit')->where('id',$entre->id_produit)->first();
+                            $categorie = DB::table('Catégorie')->where('id',$produit->id_categorie)->first();
                             $vendeur = DB::table('vendeur')->where('id',$entre->id_vendeur)->first();
                             $by = DB::table('users')->where('id',$entre->entree_par)->first();
                               
                         @endphp
                           <tr>
-                              <td>{{ $categorie->nom }}</td>
+                              <td>{{ $categorie->nom}}</td>
                               <td>{{ $produit->nom_produit}}</td>
                               <td>{{ $vendeur->nom_vendeur }}</td>
                        

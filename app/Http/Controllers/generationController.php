@@ -82,6 +82,7 @@ class generationController extends Controller
     public function show_entres()
     {
       $entres = Generation::OrderBy('date')->get();
+      
       return view('In.show')->with('entres',$entres);
     }
     

@@ -60,7 +60,7 @@
                   </div> --}}
                   <div class="form-group @if($errors->has('prix_achat')) has-error @endif">
                   <label for="prix_achat">Prix d'achat</label>
-                  <input type="text" class="form-control" name="prix_achat" data-mask="999999" placeholder="999999">
+                  <input type="text" class="form-control" name="prix_achat">
                   @if($errors->has('prix_achat')) <div class="help-block">
                      {{ $errors->first('prix_achat') }}
                   </div>

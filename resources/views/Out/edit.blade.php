@@ -15,34 +15,26 @@
 								<div id="basic-form">
 									<form action="{{ route('edit.sorties',$sorties->id) }}" method="POST" role="form">
 
-                    <div class="form-group @if($errors->has('type_id')) has-error @endif">
+                    {{-- <div class="form-group @if($errors->has('type_id')) has-error @endif">
 										{{ Form::label('type_id','Types : ')}}
 									{{ Form::select('type_id',$types, null, ['class' => 'form-control']) }}
-                  </div>
+                  </div> --}}
                   <div class="form-group @if($errors->has('date')) has-error @endif">
                   <label for="date">Date</label>
-                  <input type="text" class="form-control datepicker-input" value="{{ $sorties->date }}"  name="date" data-mask="9999-99-99">
+                  <input type="date" class="form-control datepicker-input" value="{{ $sorties->date }}"  name="date" data-mask="9999-99-99">
                     @if($errors->has('date')) <div class="help-block">
                        {{ $errors->first('date') }}
                     </div>
                   @endif
                 </div>
-                    <div class="form-group @if($errors->has('client')) has-error @endif">
-										<label for="client">Client</label>
-										<input type="text" class="form-control" value="{{ $sorties->client }}" name ="client">
-                    @if($errors->has('client')) <div class="help-block">
-                       {{ $errors->first('client') }}
-                    </div>
-                  @endif
-                    </div>
-                    <div class="form-group @if($errors->has('quantite')) has-error @endif">
-                    <label for="quantite">Quantité</label>
-                    <input type="text" class="form-control" value="{{ $sorties->quantite }}" name="quantite" data-mask="999999" placeholder="999999">
-                    @if($errors->has('quantite')) <div class="help-block">
-                       {{ $errors->first('quantite') }}
-                    </div>
-                  @endif
-                  </div>
+                <div id="basic-form">
+                  {!! Form::model($sorties,['route' => ['edit.sorties', $sorties->id],'method'=>'POST']) !!}
+
+                   <div class="form-group @if($errors->has('client_id')) has-error @endif">
+                     {{ Form::label('id_client','clients : ') }}
+                     {{ Form::select('id_client',$client,null, ['class' => 'form-control']) }}
+                 </div>
+                   
                   <div class="form-group @if($errors->has('montant_total')) has-error @endif">
                   <label for="montant_total">Montant Total</label>
                   <input type="text" class="form-control" value="{{ $sorties->montant_total }}" name="montant_total" data-mask="999999" placeholder="999999">
@@ -65,16 +57,17 @@
                    {{ $errors->first('montant_due') }}
                 </div>
               @endif
-              <div class="form-group @if($errors->has('vendu_par')) has-error @endif">
+              {{-- <div class="form-group @if($errors->has('vendu_par')) has-error @endif">
                 <label for="vendu_par">Vendu par </label>
                 <input type="text" class="form-control" value="{{ $sorties->vendu_par }}" name ="vendu_par">
                 @if($errors->has('vendu_par')) <div class="help-block">
                    {{ $errors->first('vendu_par') }}
                 </div>
               @endif
-                </div>
+                </div> --}}
+                <br>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-									  <button type="submit" class="btn btn-default">Submit</button>
+									  <button type="submit" class="btn btn-default">Valider</button>
 									</form>
 								</div>
 							</div>

@@ -16,39 +16,33 @@
 							<div class="widget-content padding">
 								<div id="basic-form">
 								<form action="{{ route('add.sorties') }}" method="POST" role="form">
-                    <div class="form-group @if($errors->has('type_id')) has-error @endif">
-										<label for="type_id">Types</label>
-									<select class="form-control" name="type_id">
-                    @foreach($types as $type)
-									  <option value="{{ $type->id }}">{{ $type->name }}</option>
-                  @endforeach
-									</select>
-                  </div>
+                   
                   <div class="form-group @if($errors->has('date')) has-error @endif">
-                  <label for="date">Date</label>
-                  <input type="text" class="form-control datepicker-input"  name="date" data-mask="9999-99-99">
+                  <label for="date">Date</label>  
+                  <input type="date" class="form-control datepicker-input"  name="date" data-mask="9999-99-99">
                     @if($errors->has('date')) <div class="help-block">
                        {{ $errors->first('date') }}
                     </div>
                   @endif
                 </div>
-                    <div class="form-group @if($errors->has('client')) has-error @endif">
+                    <div class="form-group @if($errors->has('client_id')) has-error @endif">
 										<label for="client">Client</label>
-										<input type="text" class="form-control" name ="client">
-                    @if($errors->has('client')) <div class="help-block">
-                       {{ $errors->first('client') }}
+                    <select class="form-control" name="client_id">
+                      @foreach($client as $clt)
+                      <option value="{{ $clt->id }}">{{ $clt->name }}</option>
+                    @endforeach
+                    </select>
                     </div>
-                  @endif
-                    </div>
-                  </div>
-                  <div class="form-group @if($errors->has('quantite')) has-error @endif">
+           
+                 
+                  {{-- <div class="form-group @if($errors->has('quantite')) has-error @endif">
                   <label for="quantite">Quantité</label>
                   <input type="text" class="form-control" name="quantite" data-mask="999999" placeholder="999999">
                   @if($errors->has('quantite')) <div class="help-block">
                      {{ $errors->first('quantite') }}
                   </div>
                 @endif
-                </div>
+                </div> --}}
                     <div class="form-group @if($errors->has('montant_total')) has-error @endif">
                     <label for="montant_total">Montant Total</label>
                     <input type="text" class="form-control" name="montant_total" data-mask="999999" placeholder="999999">
@@ -72,14 +66,14 @@
                    {{ $errors->first('montant_due') }}
                 </div>
               @endif
-              <div class="form-group @if($errors->has('vendu_par')) has-error @endif">
+              {{-- <div class="form-group @if($errors->has('vendu_par')) has-error @endif">
                 <label for="vendu_par">Vendu Par</label>
                 <input type="text" class="form-control" name ="vendu_par">
                 @if($errors->has('vendu_par')) <div class="help-block">
                    {{ $errors->first('vendu_par') }}
                 </div>
               @endif
-                </div>
+                </div> --}}
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
 									  <button type="submit" class="btn btn-default">Submit</button>
 									</form>

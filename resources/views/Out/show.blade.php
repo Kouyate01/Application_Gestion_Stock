@@ -27,7 +27,6 @@ Sorties
                               <th>Date</th>
                               <!--<th>N°Facture</th>-->
                               <th>Client</th>
-                              <th>Quantité</th>
                               <th>Montant Total</th>
                               <th>Montant Payé</th>
                               <th>Montant Due</th>
@@ -40,17 +39,21 @@ Sorties
 
                       <tbody>
                         @foreach($sorties as $sortie)
+                        @php
+                          $client = DB::table('clients')->where('id',$sortie->id_client)->first();
+                          $by = DB::table('vendeur')->where('id',$sortie->vendu_par)->first();
+                        @endphp
                           <tr>
 
                               {{--<td>{{ $sortie->type->name }}</td>--}}
                               <td>{{ date('d/m/Y',strtotime($sortie->date)) }}</td>
                               {{--<td>{{ $sortie->nfacture }}</td>--}}
-                              <td>{{ $sortie->client}}</td>
-                              <td>{{ $sortie->quantite}}</td>
+                              <td>{{ $client->name}}</td>
+                              {{-- <td>{{ $sortie->quantite}}</td> --}}
                               <td>{{ $sortie->montant_total }}</td>
-                              <td>{{ $sortie->montant_paye}}</td>
-                              <td>{{ $sortie->montant_due }}</td>
-                              <td>{{ $sortie->vendu_par }}</td>
+                                <td>{{ $sortie->montant_paye}}</td>
+                                <td>{{ $sortie->montant_due }}</td>
+                              <td>{{ $by ->nom_vendeur }}</td>
                               {{--<td>{{}}--}}
                               {{--<td>{!! $sortie->solde = $sortie->quantite * $sortie->prix_uni !!}</td>--}}
                               <td>

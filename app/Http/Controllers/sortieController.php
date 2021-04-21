@@ -18,7 +18,7 @@ class sortieController extends Controller
    public function sortie_home()
    {
     $sortie = Sortie::OrderBy('date')->get();
-    return view('sortie.home')->with('sortie',$sortie);
+    return view('sortie.home')->with('sortie',$sortie); 
    }
    public function get_edit_sortie($id)
    {
@@ -38,20 +38,20 @@ class sortieController extends Controller
       $this->validate($request,[
         //'type_id' => 'required',
         'date' => 'required',
-        'client' => 'required',
+        'id_client' => 'required',
         'montant_total' => 'required',
         'montant_paye' => 'required',
         'montant_due' => 'required',
-        'vendu_par' => 'required'
+        // 'vendu_par' => 'required'
         ]);
        //$sortie->type_id = $request->type_id;
         $sorties->date = $request->date;
         //$sortie->nfacture = $request->nfacture;
-        $sorties->client = $request->client;
+        $sorties->id_client = $request->id_client;
         $sorties->montant_total = $request->montant_total;
         $sorties->montant_paye = $request->montant_paye;
         $sorties->montant_due = $request->montant_due;
-        $sorties->vendu_par = $request->vendu_par;
+        // $sorties->vendu_par = $request->vendu_par;
         $sorties->update();
         Session::flash('success','Vous avez bien modifier votre stock');
         return redirect()->route('show.sorties');
@@ -194,35 +194,40 @@ class sortieController extends Controller
     }
     public function get_add_sorties()
     {
-      $types = type::all();
-      return view('Out.add')->with('types',$types);
+     
+      $produit = \DB::table('produit')->get();
+      $client = \DB::table('clients')->get();
+
+      return view('Out.add')->with(['produit'=>$produit,'client'=>$client]);
+
+      
     }
     public function post_add_sorties(Request $request)
     {
      
       $this->validate($request,[
-        'type_id' => 'required',
+        // 'type_id' => 'required',
         'date' => 'required',
-        'client' => 'required',
+        'client_id' => 'required',
         'montant_total' => 'required',
         'montant_paye' => 'required',
         'montant_due' => 'required',
-        'vendu_par' => 'required'
+        // 'vendu_par' => 'required'
         ]);
         $sorties = new Sortie;
         // $sorties->type_id = $request->type_id;
         $sorties->date = $request->date;
         //$sorties->nfacture = $request->nfacture;
-        $sorties->client = $request->client;
+        $sorties->id_client = $request->client_id;     
         $sorties->montant_total = $request->montant_total;
         $sorties->montant_paye = $request->montant_paye;
         $sorties->montant_due = $request->montant_due;
-        $sorties->vendu_par = $request->vendu_par;
-        
+        // $sorties->vendu_par = $request->vendu_par;
+        $sorties->vendu_par=1; 
         // $sorties->mode = 2;
         $sorties->save();
 
-        Session::flash('success','Vous Avez Bien Ajouer votre nouveaux Commande');
+        Session::flash('success','Vous Avez Bien Ajouter votre nouvelle Commande');
         // die($request->client);
 
         return redirect()->route("show.sorties");
@@ -233,14 +238,34 @@ class sortieController extends Controller
     public function get_edit_sorties($id)
     {
       $sorties = Sortie::find($id);
-      $types = type::all();
-      $typo = [];
-      foreach($types as $type)
+ 
+      // $entres = Sortie::find($id);
+      $categorie = \DB::table('catégorie')->get();
+      $produits = \DB::table('produit')->get();
+      $vendeurs = \DB::table('vendeur')->get();
+      $clients = \DB::table('clients')->get();  
+
+      $produit = [];
+      foreach($produits as $prod)
       {
-        $typo[$type->id] = $type->name;
+        $produit[$prod->id] = $prod->nom_produit;
       }
-      return view('Out.edit')->with('sorties',$sorties)->with('types',$typo);
+      $vendeur = [];
+      foreach($vendeurs as $vend)
+      {
+        $vendeur[$vend->id] = $vend->nom_vendeur;
+      }
+      $client = [];
+      foreach($clients as $clt)
+      {
+        $client[$clt->id] = $clt->name;
+      }
+      $sorties = Sortie::find($id);
+      $types = type::all();
+     
+      return view('Out.edit')->with(['sorties'=>$sorties,'client'=>$client,'produit'=>$produit,'vendeur'=>$vendeur]);
     }
+
 
     public function get_sorties(Request $request,$id)
     {
@@ -249,16 +274,16 @@ class sortieController extends Controller
       $this->validate($request,[
         //'type_id' => 'required',
         'date' => 'required',
-        'client' => 'required',
+        'id_client' => 'required',
         'montant_total' => 'required',
         'montant_paye' => 'required',
         'montant_due' => 'required',
-        'vendu_par' => 'required',
+        // 'vendu_par' => 'required',
         ]);
        //$sorties->type_id = $request->type_id;
         $sorties->date = $request->date;
         //$sorties->nfacture = $request->nfacture;
-        $sorties->client = $request->client;
+        $sorties->client = $request->id_client;
         $sorties->montant_total = $request->montant_total;
         $sorties->montant_paye = $request->montant_paye;
         $sorties->montant_due = $request->montant_due;
@@ -326,7 +351,7 @@ class sortieController extends Controller
         'vendu_par' => 'required'
         ]);
         $types->date = $request->date;
-        // $types->client = $request->nfacture;
+        $types->client_id = $request->client_id;
         $types->montant_total = $request->prix_uni;
         $types->montant_paye = $request->quantite;
         $types->montant_due = $request->fourni;
