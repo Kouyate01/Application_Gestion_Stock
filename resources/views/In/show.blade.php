@@ -45,17 +45,16 @@ Entrées
                         
                         @foreach($entres as $entre)
                         @php
-               
+                            $categorie = DB::table('Catégorie')->where('id',$entre->id_categorie)->first();
                             $produit = DB::table('Produit')->where('id',$entre->id_produit)->first();
-                            $categorie = DB::table('Catégorie')->where('id',$produit->id_categorie)->first();
                             $vendeur = DB::table('vendeur')->where('id',$entre->id_vendeur)->first();
                             $by = DB::table('users')->where('id',$entre->entree_par)->first();
                               
                         @endphp
                           <tr>
-                              <td>{{ $categorie->nom}}</td>
-                              <td>{{ $produit->nom_produit}}</td>
-                              <td>{{ $vendeur->nom_vendeur }}</td>
+                              <td>{{ $entre->nom}}</td>
+                              <td>{{ $entre->nom_produit}}</td>
+                              <td>{{ $entre->nom_vendeur }}</td>
                        
                               <td>{{ $entre->quantite}}</td>
                               <td>{{ $entre->stock_actuel }}</td>

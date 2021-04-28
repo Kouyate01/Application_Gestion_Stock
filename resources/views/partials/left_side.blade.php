@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href='#' id="active-fourn-table">
+                            <a href='{{ route('show.fournisseur') }}' id="active-fourn-table">
                                 <span>Fournisseurs</span>
                             </a>
                         </li>

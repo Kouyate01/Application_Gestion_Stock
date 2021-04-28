@@ -161,7 +161,7 @@ Route::get('types/delete/{id}',[
   ]);
   Route::get('categorie',[
     'uses' => 'categorieController@show_categorie',
-    'as' => 'show.categorie'
+    'as' => 'show.categorie'  
   ]);
   //Edit entres
   Route::get('categorie/modifier/{id}',[
@@ -209,3 +209,35 @@ Route::get('types/delete/{id}',[
     'uses' => 'produitController@destroy_produit',
     'as' => 'destroy.produit'
     ]);
+
+    //--------------------------------------------------------------------------------------------
+
+    Route::get('/vendeur  /add',[
+      'uses' => 'vendeurrController@get_add_vendeur',
+      'as' => 'get_add_vendeur'
+    ]);
+    Route::post('vendeur/add',[
+      'uses' => 'vendeurrController@post_add_vendeur',
+      'as' => 'add.vendeur'
+    ]);
+    Route::get('vendeur',[
+      'uses' => 'vendeurController@show_vendeur',
+      'as' => 'show.vendeur'
+    ]);
+    //Edit entres
+    Route::get('vendeur/modifier/{id}',[
+      'uses' => 'vendeurController@get_edit_vendeur',
+      'as' => 'get_edit_vendeur'
+      ]);
+    Route::post('vendeur/modifier/{id}',[
+      'uses' => 'vendeurController@edit_vendeur',
+      'as' => 'edit.vendeur'
+    ]);
+    
+    //delete
+    
+    Route::get('vendeur/delete/{id}',[
+      'uses' => 'vendeurController@destroy_vendeur',
+      'as' => 'destroy.vendeur'
+      ]);
+  

@@ -15,7 +15,10 @@
 								<div id="basic-form">
                    {!! Form::model($entres,['route' => ['edit.entres', $entres->id],'method'=>'POST']) !!}
 
-
+                   <div class="form-group @if($errors->has('categorie_id')) has-error @endif">
+                    {{ Form::label('id_categorie','Catégorie : ') }}
+                    {{ Form::select('id_categorie',$categorie,null, ['class' => 'form-control']) }}
+                </div>
                     <div class="form-group @if($errors->has('produit_id')) has-error @endif">
                       {{ Form::label('id_produit','Produit : ') }}
                       {{ Form::select('id_produit',$produit,null, ['class' => 'form-control']) }}
@@ -25,7 +28,7 @@
                     {{ Form::select('id_vendeur',$vendeur,null, ['class' => 'form-control']) }}
                 </div>
                   {{-- <div class="form-group @if($errors->has('fourni')) has-error @endif">
-                  <label for="fourni">Fournisseur</label>
+                  <label for="fourni">Fournisseur</label> 
                   <input type="text" class="form-control datepicker-input" value="{{ $entres->fourni }}"  name="fourni" data-mask="9999-99-99">
                     @if($errors->has('fourni')) <div class="help-block">
                        {{ $errors->first('fourni') }}
