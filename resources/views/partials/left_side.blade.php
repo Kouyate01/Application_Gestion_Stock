@@ -8,7 +8,7 @@
                 <a href="profile.html" class="rounded-image profile-image"><img src="{{ URL::to('images/users/user-100.jpg')}}"></a>
             </div>
             <div class="col-xs-8">
-                <div class="profile-text">Bienvenue <b>ghfhgjf</b></div>
+                <div class="profile-text">Bienvenue <b>Monsieur Fjklm</b></div>
 
             </div>
         </div>
@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href='{{ route('show.fournisseur') }}' id="active-fourn-table">
+                            <a href='{{ route('show.vendeur') }}' id="active-fourn-table">
                                 <span>Fournisseurs</span>
                             </a>
                         </li>
